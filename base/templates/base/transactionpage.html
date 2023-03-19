@@ -1,0 +1,14 @@
+{% extends "Layout.html" %}
+{% block content %}
+<div class="transaction-table-container">
+    <div class="col-md-12 mt-3">
+        <!-- Filter Div -->
+            <div class="row mt-2">
+                {% include 'base/filter.html'%}
+            </div>
+        <div class="table-container overflow-y-auto mt-3" style="max-height: 86vh;">
+            {% include "base/table.html" %}
+        </div>
+    </div>
+</div>
+{% endblock %}

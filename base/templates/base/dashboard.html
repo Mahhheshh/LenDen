@@ -1,0 +1,92 @@
+{% extends "Layout.html" %}
+{% load static %}
+{% block content %}
+<style>
+    .card-background {
+        background-color: #1c1b39;
+    }
+
+    .lenden {
+        color: green;
+    }
+
+    .borrown {
+        color: red;
+    }
+</style>
+<div class="dashboard-cointainer cointainer">
+    <div class="messages opacity-75" style="z-index: 2;">
+        {% include 'alert.html' %}
+    </div>
+    <!-- Row 1 -->
+    <div class="row d-flex mt-4">
+        <div class="col-md-5">
+            <p class="larger">Welcome, {{request.user.username}}</p>
+        </div>
+        <div class="col-md-7">
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+    <!-- Row 2 -->
+    <div class="row mt-3">
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card card-background">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4 d-flex align-items-center justify-content-center">
+                                    <img src="{% static 'images/icons/arrow-14.svg'%}" alt="">
+                                </div>
+                                <div class="col-md-8">
+                                    <div>
+                                        <p class="card-text lenden">Total Lenden</p>
+                                    </div>
+                                    <div>
+                                        <h5 class="card-title">${{lenden_money}}</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card card-background">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4 d-flex align-items-center justify-content-center">
+                                    <img src="{% static 'images/icons/arrow-15.svg'%}" alt="">
+                                </div>
+                                <div class="col-md-8">
+                                    <div>
+                                        <p class="card-text borrown">Total borrow</p>
+                                    </div>
+                                    <div>
+                                        <h5 class="card-title">${{borrowed_money}}</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 mt-3">
+                {% include "base/table.html" %}
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card card-background" style="height: 87vh">
+                <div class="card-body">
+                    <h2>Notifications</h2>
+                    <div class="message justify-content-center align-items-center d-flex h-100">
+                        <h4>Under Devlopment....</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

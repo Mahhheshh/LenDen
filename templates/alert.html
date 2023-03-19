@@ -1,0 +1,15 @@
+{% if messages %}
+{% for message in messages %}
+<div class="alert {{ message.tags }} alert-dismissible" role="alert">
+    {{ message | safe }}
+    <button type="button" class="btn-close" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}
+<script>
+    $(document).ready(function () {
+        $('.btn-close').click(function () {
+            location.reload();
+        });
+    });
+</script>

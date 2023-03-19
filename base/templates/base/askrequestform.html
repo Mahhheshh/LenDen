@@ -1,0 +1,31 @@
+{% extends "Layout.html" %}
+
+{% block content %}
+<div class="cointainer">
+    <div class="d-flex justify-content-center align-items-center" style="height:100vh">
+      <div class="card card-background" style="width: 25rem;">
+        <div class="card-body">
+          {% include 'alert.html' %}
+          <form action="" method="post">
+            {% csrf_token %}
+            <div class="form-group mt-2">
+                <label for="amount_paid" class="text-light">Amount Paid</label>
+                <input type="number" name="amount_paid" value="{{amount_paid}}" class="form-contorl d-flex flex-column" placeholder="Amount Paid" id="amount_paid" disabled>
+            </div>
+            <div class="form-group mt-2">
+                <label for="{{form.amount.label}}" class="text-light" value="{{transaction.amount}}">{{form.amount.label}}</label>
+                {{form.amount}}
+            </div>
+            <div class="form-group mt-2">
+                <label for="{{form.message.label}}" class="text-light">{{form.message.label}}</label>
+                {{form.message}}
+            </div>
+            <div class="form-group mt-2">
+              <button type="submit" class="btn btn-primary" value="Ask">Ask</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,63 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
+body {
+    background-color: #141332;
+    color: #FFFFFF;
+    margin: 0;
+    width: 98vw;
+    /* line-height: normal; */
+}
+
+text{
+    color: #FFFFFF;
+}
+
+.font-css {
+    font-size: large;
+    font-family: sans-serif',Gill Sans', 'Gill Sans MT', "Calibri", 'Trebuchet MS', sans-serif;
+    font-weight: 500;
+    font-size: larger;
+}
+
+.nav-container {
+    display: flex;
+}
+
+.larger {
+    font-size: larger;
+}
+
+.element {
+    position: absolute;
+    width: 13.09px;
+    height: 7.48px;
+    font-family: 'Plus Jakarta Sans';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 6.02542px;
+    line-height: 8px;
+    color: #FFFFFF;
+}
+  
+.card-background {
+    background-color: #1c1b39;
+}
+
+.lenden {
+    color: green;
+}
+
+.borrown {
+    color: red;
+}
+
+.a{
+    text-decoration: none;
+}
+
+.links {
+    text-decoration: none;
+}
+
+.dropdown-toggle::before{
+    background-color: #141332;
+}

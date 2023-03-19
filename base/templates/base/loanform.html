@@ -1,0 +1,23 @@
+{% extends "Layout.html" %}
+
+{% block content %}
+<div class="form-container col-md-12 d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="card card-background">
+        <div class="card-body">
+            {% include 'alert.html' %}
+            <form action="" method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                <div class="form-group mt-2 d-flex flex-column">
+                    <label for="{{field.label}}" class="text-light">{{field.label}}</label>
+                    {{field}}
+                </div>
+                {% endfor %}
+                <div class="form-group mt-2">
+                    <button type="submit" class="btn btn-primary" value="Add">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

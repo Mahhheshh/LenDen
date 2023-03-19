@@ -1,0 +1,98 @@
+{% extends "Layout.html" %}
+{% load static %}
+{% block content %}
+<style>
+    .card-background {
+      background-color: #1c1b39;
+    }
+    .large {
+      font-size: larger;
+    }
+  </style>
+<div class="requests-container">
+    <div class="col-md-12 mt-3">
+      {% include 'alert.html' %}
+      <form method="get" class="row">
+        {% csrf_token %}
+        {% for field in filter.form %}
+        <div class="form-group col-md-3">
+          <label for="{{field.label}}">{{field.label}}</label>
+          {{field}}
+        </div>
+        {% endfor %}
+        <div class="from-group col-md-3 d-flex justify-content-center align-items-center">
+          <button type="submit" class="btn btn-primary justify-content-center">Search</button>
+        </div>
+      </form>
+      <div class="table-container mt-2 overflow-y-auto" style="max-height: 86vh;">
+        <table class="table align-middle mb-0 rounded" style="background-color: #1c1b39; color:white; overflow-y: scroll;">
+            <thead style="color:white">
+              <tr>
+                <th>Date</th>
+                <th>Name</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for req in requests %}
+              <tr>
+                <td>
+                  <p class="fw-normal mb-1">{{req.created_at}}</p>
+                </td>
+                {% if request.user == req.transaction.lender %}
+                <td>
+                  <div class="d-flex align-items-center">
+                    <img
+                        src="{% static req.transaction.borrower.avatar.url %}"
+                        alt=""
+                        style="width: 45px; height: 45px"
+                        class="rounded-circle"
+                        />
+                    <div class="ms-3">
+                      <p class="fw-bold mb-1">{{req.transaction.borrower.username}}</p>
+                      <p class="mb-0">{{req.transaction.borrower}}</p>
+                    </div>
+                  </div>
+                </td>
+                {% else %}
+                <td>
+                  <div class="d-flex align-items-center">
+                    <img
+                        src="{% static req.transaction.lender.avatar.url %}"
+                        alt=""
+                        style="width: 45px; height: 45px"
+                        class="rounded-circle"
+                        />
+                    <div class="ms-3">
+                      <p class="fw-bold mb-1">{{req.transaction.lender.username}}</p>
+                      <p class="mb-0">{{req.transaction.lender}}</p>
+                    </div>
+                  </div>
+                </td>
+                {% endif %}
+                <td>
+                  <span class="badge badge-success rounded-pill d-inline">{{req.amount}}</span>
+                </td>
+                <td>
+                  <span class="badge badge-success rounded-pill d-inline" style="color: rgb(119, 197, 119);">{{req.status}}</span>
+                <td>
+                  <div class="button-container">
+                    {% if request.user == req.transaction.lender %}
+                      <a href="{% url 'manage_request' req.id %}" class="large" style="text-decoration: none;"><i class="bi bi-check-lg">View</i></a>
+                    {% elif req.status == "Approved" %}
+                      <a href="" class="large" style="text-decoration: none;">Approved</a>
+                    {% else %}
+                      <a href="{% url 'cancel_request' req.id %}" class="large" style="text-decoration: none;"><i class="bi bi-x-lg">Cancel</i></a>
+                    {% endif %}
+                  </div>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+        </table>
+      </div>
+    </div>
+</div>
+{% endblock %}

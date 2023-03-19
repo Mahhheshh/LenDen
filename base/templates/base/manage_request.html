@@ -1,0 +1,39 @@
+{% extends 'Layout.html' %}
+{% load static %}
+
+{% block content %}
+<div class="requests-manager-container mt-2">
+    <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+        <div class="card card-background col-md-6">
+            <div class="card-body">
+                <div class="form-group mt-2">
+                    <label for="Name" class="text-light">Borrower Name</label>
+                    <input type="text" name="Username" value="{{pay_req.transaction.borrower.username}}"
+                        class="form-control" placeholder="{{pay_req.transaction.borrower.username}}" disabled>
+                </div>
+                <div class="form-group mt-2">
+                    <label for="Amount" class="text-light">Amount</label>
+                    <input type="text" name="amount" value="{{pay_req.amount}}" class="form-control" disabled>
+                </div>
+                <div class="form-group mt-2">
+                    <label for="Message" class="text-light">Message</label>
+                    <textarea name="message" cols="40" rows="10" class="form-control" placeholder="Message"
+                        maxlength="50" id="id_message" disabled>
+                    {{pay_req.message}}
+                </textarea>
+                </div>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="">
+                    {% if pay_req.status == "Pending" %}
+                    <div class="action-container d-flex justify-content-between mt-3">
+                        <button class="btn btn-danger" type="submit" name="action" value="Rejected">Reject</button>
+                        <button class="btn btn-success" type="submit" name="action" value="Approved">Approve</button>
+                    </div>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

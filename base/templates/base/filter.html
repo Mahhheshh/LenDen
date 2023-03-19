@@ -1,0 +1,25 @@
+<form method="get" class="row">
+    {% csrf_token %}
+    <div class="form-group col-md-3">
+        <label for="{{filter.form.user.label}}">{{filter.form.user.label}}</label>
+        {{filter.form.user}}
+        <datalist id="user_list">
+            {% for user in users %}
+            {% if not user.is_staff %}
+            <option value="{{user}}">{{transaction.email}}</option>
+            {% endif %}
+            {% endfor %}
+        </datalist>
+    </div>
+    <div class="form-group col-md-3">
+        <label for="{{filter.form.is_paid.label}}">{{filter.form.is_paid.label}}</label>
+        {{filter.form.is_paid}}
+    </div>
+    <div class="form-group col-md-3">
+        <label for="{{filter.form.type.label}}">{{filter.form.type.label}}</label>
+        {{filter.form.type}}
+    </div>
+    <div class="form-group col-md-3 d-flex justify-content-center align-items-center">
+        <button class="btn btn-primary" value="search" type="submit">Search</button>
+    </div>
+</form>

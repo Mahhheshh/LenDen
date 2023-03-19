@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Finance Webapp</title>
+</head>
+
+
+<body>
+    <style>
+        .font-css {
+            font-size: large;
+            font-family: sans-serif',Gill Sans', 'Gill Sans MT', "Calibri", 'Trebuchet MS', sans-serif;
+            font-weight: 500;
+            font-size: larger;
+        }
+
+        .nav-container {
+            display: flex;
+        }
+
+        .larger {
+            font-size: larger;
+        }
+    </style>
+    <main>
+        <div class="text-centered">
+            <div class="row" style="height: 100vh;">
+                <!-- Navbarr -->
+                <div class="col-12 col-md-3" style="background-color: #1c1b39; border-radius: 10px;">
+                    <div class="app-name-cointainer d-flex justify-content-center align-items-center mt-5">
+                        <h3>LenDen</h3>
+                    </div>
+                    <div class="nav-container flex justify-content-center ">
+                        <ul class="nav flex-column font-css">
+                            <li class="nav-item mt-3">
+                                <a class="nav-link active larger" aria-current="page" href="{% url 'dashboard' %}"
+                                    style="color:#FFFFFF"><img class="element-3-icon" alt=""
+                                        src="{% static 'images/icons/element3.svg'%}"> Dashboard</a>
+                            </li>
+                            <li class="nav-item mt-3">
+                                <a class="nav-link larger" href="{% url 'show_transactions' %}"
+                                    style="color:#FFFFFF"><img src="{% static 'images/icons/barlinechart.svg'%}" alt="">
+                                    Transactions</a>
+                            </li>
+                            <li class="nav-item mt-3 larger">
+                                <a class="nav-link" href="{% url 'add_loan' %}" style="color:#FFFFFF"><i
+                                        class="bi bi-plus"> Add Loans</i></a>
+                            </li>
+                            <li class="nav-item mt-3 larger">
+                                <a class="nav-link" href="{% url 'requestpage' %}" style="color:#FFFFFF"><img
+                                        src="{% static 'images/icons/request-icon.png'%}" alt=""> Requests</a>
+                            </li>
+                            <li class="nav-item mt-3 larger">
+                                <a class="nav-link" href="{% url 'profilepage' %}" style="color:#FFFFFF"><img
+                                        src="{% static 'images/icons/user03.svg'%}" alt=""> Account</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div
+                        class="user-profile-cointainer container mt-5 d-flex justify-content-center align-items-center mx-1">
+                        <div class="p-info justify-content-center align-items-center">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <img src="{% static request.user.avatar.url %}" alt="" style="height: 60px; width: 60px;"
+                                        class="rounded-circle object-fit-cover rounded" />
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <h4>{{request.user.username}}</h4>
+                                    </div>
+                                    <div class="row">
+                                        <small>{{request.user.email}}</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 d-flex justify-content-center align-items-center">
+                                    <div class="dropdown">
+                                        <button class="btn card-background dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="{% url 'logoutpage' %}">Logout</a></li>
+                                          </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- app components -->
+                <div class="col-md-9">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
