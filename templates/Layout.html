@@ -35,11 +35,11 @@
         <div class="text-centered">
             <div class="row" style="height: 100vh;">
                 <!-- Navbarr -->
-                <div class="col-12 col-md-3" style="background-color: #1c1b39; border-radius: 10px;">
+                <div class="col-12 col-md-3 col-sm-1" style="background-color: #1c1b39; border-radius: 10px;">
                     <div class="app-name-cointainer d-flex justify-content-center align-items-center mt-5">
                         <h3>LenDen</h3>
                     </div>
-                    <div class="nav-container flex justify-content-center ">
+                    <div class="navbar-nav d-flex justify-content-center align-items-center mr-auto">
                         <ul class="nav flex-column font-css">
                             <li class="nav-item mt-3">
                                 <a class="nav-link active larger" aria-current="page" href="{% url 'dashboard' %}"
@@ -63,35 +63,23 @@
                                 <a class="nav-link" href="{% url 'profilepage' %}" style="color:#FFFFFF"><img
                                         src="{% static 'images/icons/user03.svg'%}" alt=""> Account</a>
                             </li>
+                            <li class="nav-item mt-5">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <img src="{% static request.user.avatar.url %}" alt="" style="height: 60px; width: 60px;"
+                                            class="rounded-circle object-fit-cover rounded" />
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="row">
+                                            <h4>{{request.user.username}}</h4>
+                                        </div>
+                                        <div class="row">
+                                            <small>{{request.user.email}}</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
                         </ul>
-                    </div>
-                    <div
-                        class="user-profile-cointainer container mt-5 d-flex justify-content-center align-items-center mx-1">
-                        <div class="p-info justify-content-center align-items-center">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <img src="{% static request.user.avatar.url %}" alt="" style="height: 60px; width: 60px;"
-                                        class="rounded-circle object-fit-cover rounded" />
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="row">
-                                        <h4>{{request.user.username}}</h4>
-                                    </div>
-                                    <div class="row">
-                                        <small>{{request.user.email}}</small>
-                                    </div>
-                                </div>
-                                <div class="col-md-2 d-flex justify-content-center align-items-center">
-                                    <div class="dropdown">
-                                        <button class="btn card-background dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="{% url 'logoutpage' %}">Logout</a></li>
-                                          </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <!-- app components -->
